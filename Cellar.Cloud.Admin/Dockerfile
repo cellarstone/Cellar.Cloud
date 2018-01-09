@@ -1,20 +1,56 @@
-# Sample contents of Dockerfile
- # Stage 1
-FROM microsoft/dotnet:2.0.0-sdk AS builder
-ENV ASPNETCORE_ENVIRONMENT="production"
-WORKDIR /source
+FROM golang:alpine
+ADD . $GOPATH/src/github.com/cellarstone/Cellar.Cloud/Cellar.Cloud.Admin
 
- # caches restore result by copying csproj file separately
-COPY . .
 
-RUN dotnet restore
-# RUN 'cd ..'
-RUN dotnet publish --output /app/ --configuration Release
 
- # Stage 2
- FROM microsoft/dotnet:2.0.0-runtime
- WORKDIR /app
- ENV ASPNETCORE_ENVIRONMENT="production"
- EXPOSE 44402
- COPY --from=builder /app .
- ENTRYPOINT ["dotnet", "Cellar.Cloud.Admin.dll"]
+# Cellar websockets - get packages & build
+WORKDIR $GOPATH/src/github.com/cellarstone/Cellar.Cloud/Cellar.Cloud.Admin
+RUN go-wrapper download
+RUN go-wrapper install
+RUN go build -o cellarcloudadmin
+
+# helpers
+# RUN echo $GOPATH
+RUN pwd
+RUN ls -l
+
+
+RUN apk update
+
+## Change alpine version to install latest node
+RUN apk add --no-cache --repository http://nl.alpinelinux.org/alpine/edge/main libuv &&\
+    apk add --no-cache --repository http://dl-cdn.alpinelinux.org/alpine/edge/community nodejs-current-npm
+
+# Install NodeJS
+# RUN apk add nodejs
+# RUN apk add nodejs-npm
+
+# BUILD APP 
+RUN npm install
+RUN npm run-script myappbuild
+
+
+
+# -----------------------
+# Stage 2
+# -----------------------
+#  FROM alpine:latest
+#  RUN apk --no-cache add ca-certificates
+FROM golang:alpine
+WORKDIR /app
+COPY --from=0 /go/src/github.com/cellarstone/Cellar.Cloud/Cellar.Cloud.Admin/cellarcloudadmin /app/
+COPY --from=0 /go/src/github.com/cellarstone/Cellar.Cloud/Cellar.Cloud.Admin/wwwroot /app/wwwroot
+ 
+# RUN ls -l 
+
+# WORKDIR /app/wwwroot
+
+# RUN ls -l 
+
+# WORKDIR /app
+
+# RUN ls -l 
+
+CMD ["./cellarcloudadmin"]
+
+

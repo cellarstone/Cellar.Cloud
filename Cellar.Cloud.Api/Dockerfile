@@ -1,22 +1,35 @@
-# Sample contents of Dockerfile
- # Stage 1
- FROM microsoft/dotnet:2.0.0-sdk AS builder
- WORKDIR /source
+FROM golang
+ADD . $GOPATH/src/github.com/cellarstone/Cellar.Cloud/Cellar.Cloud.Api
 
-ENV ASPNETCORE_ENVIRONMENT="production"
 
- # caches restore result by copying csproj file separately
- COPY . .
- RUN dotnet restore
 
- # copies the rest of your code
-#  COPY . .
- RUN dotnet publish --output /app/ --configuration Release
+# Cellar websockets - get packages & build
+WORKDIR $GOPATH/src/github.com/cellarstone/Cellar.Cloud/Cellar.Cloud.Api
+RUN go-wrapper download
+RUN go-wrapper install
+RUN go build -o cellarcloudapi  
 
- # Stage 2
- FROM microsoft/dotnet:2.0.0-runtime
- WORKDIR /app
- ENV ASPNETCORE_ENVIRONMENT="production"
- EXPOSE 44403
- COPY --from=builder /app .
- ENTRYPOINT ["dotnet", "Cellar.Cloud.Api.dll"]
+# helpers
+# RUN echo $GOPATH
+RUN pwd
+RUN ls -l
+
+
+# -----------------------
+# Stage 2
+# -----------------------
+#  FROM alpine:latest
+#  RUN apk --no-cache add ca-certificates
+# FROM golang:alpine
+FROM golang
+# RUN apk update && apk add bash
+
+
+# WORKDIR /app
+COPY --from=0 /go/src/github.com/cellarstone/Cellar.Cloud/Cellar.Cloud.Api/cellarcloudapi .
+
+# RUN ls -l  
+
+CMD ["./cellarcloudapi"]
+# ENTRYPOINT ["/app/cellarcloudapi"]
+
