@@ -27,11 +27,11 @@ pipeline {
             sh 'docker tag cloudnginx eu.gcr.io/cellarstone-1488228226623/cloudnginx:0.0.1'
             sh 'gcloud docker -- push eu.gcr.io/cellarstone-1488228226623/cloudnginx:0.0.1'
 
-            sh 'gcloud container clusters get-credentials developcluster-1 --zone europe-west1-b --project cellarstone-1488228226623'
+            sh 'gcloud container clusters get-credentials cellarcloud --zone europe-west1-b --project cellarstone-1488228226623'
             sh 'kubectl apply -f k8s/nginx.yaml'
           },
           mongo: {
-            sh 'gcloud container clusters get-credentials developcluster-1 --zone europe-west1-b --project cellarstone-1488228226623'
+            sh 'gcloud container clusters get-credentials cellarcloud --zone europe-west1-b --project cellarstone-1488228226623'
             sh 'kubectl apply -f k8s/mongodb.yaml'
           }
         )
