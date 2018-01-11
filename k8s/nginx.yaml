@@ -11,17 +11,17 @@ spec:
     component: cloudnginx
   ports:
   - port: 80
-    name: http_base
+    name: http-base
   - port: 443
-    name: https_base
+    name: https-base
   - port: 8080
-    name: http_api
+    name: http-api
   - port: 4432
-    name: https_api
+    name: https-api
   - port: 8081
-    name: http_admin
+    name: http-admin
   - port: 4433
-    name: https_admin
+    name: https-admin
   type: LoadBalancer
 ---
 apiVersion: extensions/v1beta1
