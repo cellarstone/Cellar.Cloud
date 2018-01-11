@@ -10,7 +10,7 @@ spec:
     app: cloudapi
     component: cloudapi
   ports:
-   - port: 80
+   - port: 55503
   type: ClusterIP
 ---
 apiVersion: extensions/v1beta1
@@ -36,7 +36,7 @@ spec:
         image: eu.gcr.io/cellarstone-1488228226623/cloudapi:0.0.1
         imagePullPolicy: Always
         ports:
-        - containerPort: 80
+        - containerPort: 55503
       imagePullSecrets:
       - name: registry-key
 
