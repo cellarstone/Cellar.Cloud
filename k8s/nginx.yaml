@@ -36,12 +36,10 @@ spec:
     spec:
       containers:
       - name: cloudnginx
-        image: eu.gcr.io/cellarstone-1488228226623/cloudnginx:0.0.1
+        image: eu.gcr.io/cellarstone-1488228226623/cloudnginx:0.0.2
         imagePullPolicy: Always
         ports:
         - containerPort: 80
-        - containerPort: 8080
-        - containerPort: 8081
         volumeMounts:
         - name: "secrets"
           mountPath: "/etc/secrets"
