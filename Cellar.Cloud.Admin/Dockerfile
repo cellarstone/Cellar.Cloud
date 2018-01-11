@@ -37,6 +37,8 @@ RUN npm run-script myappbuild
 #  FROM alpine:latest
 #  RUN apk --no-cache add ca-certificates
 FROM golang:alpine
+EXPOSE 55502
+
 WORKDIR /app
 COPY --from=0 /go/src/github.com/cellarstone/Cellar.Cloud/Cellar.Cloud.Admin/cellarcloudadmin /app/
 COPY --from=0 /go/src/github.com/cellarstone/Cellar.Cloud/Cellar.Cloud.Admin/wwwroot /app/wwwroot
