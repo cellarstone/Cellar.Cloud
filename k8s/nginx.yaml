@@ -44,10 +44,11 @@ spec:
         image: eu.gcr.io/cellarstone-1488228226623/cloudnginx:0.0.2
         imagePullPolicy: Always
         ports:
+        - containerPort: 443
         - containerPort: 80
         volumeMounts:
         - name: "secrets"
-          mountPath: "/etc/secrets"
+          mountPath: "/etc/nginx/ssl"
           readOnly: true
       imagePullSecrets:
       - name: registry-key
