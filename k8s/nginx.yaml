@@ -19,7 +19,7 @@ spec:
   - port: 8081
     name: http-admin
   type: LoadBalancer
-  loadBalanderIP: "130.211.111.76"
+  loadBalancerIP: "130.211.111.76"
 ---
 apiVersion: extensions/v1beta1
 kind: Deployment
