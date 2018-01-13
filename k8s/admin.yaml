@@ -1,0 +1,42 @@
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: cloudadmin
+    component: cloudadmin
+  name: cloudadmin
+spec:
+  selector:
+    app: cloudadmin
+    component: cloudadmin
+  ports:
+   - port: 55502
+  type: ClusterIP
+---
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: cloudadmin
+spec:
+  replicas: 2
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 0
+  minReadySeconds: 5
+  template:
+    metadata:
+      labels:
+        app: cloudadmin
+        component: cloudadmin
+    spec:
+      containers:
+      - name: cloudadmin
+        image: eu.gcr.io/cellarstone-1488228226623/cloudadmin:0.0.1
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 55502
+      imagePullSecrets:
+      - name: registry-key
+

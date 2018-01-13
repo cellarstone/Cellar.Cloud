@@ -23,7 +23,7 @@ RUN ls -l
 # FROM golang:alpine
 FROM golang
 # RUN apk update && apk add bash
-
+EXPOSE 55503
 
 # WORKDIR /app
 COPY --from=0 /go/src/github.com/cellarstone/Cellar.Cloud/Cellar.Cloud.Api/cellarcloudapi .
