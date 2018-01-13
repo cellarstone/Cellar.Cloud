@@ -1,4 +1,4 @@
-Golang Simple Angular Project 
+Golang Simple Angular Project.
 
 # Admin
 

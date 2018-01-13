@@ -1,5 +1,5 @@
 
-Golang Simple API project
+Golang Simple API project.
 
 # Api
 
