@@ -4,7 +4,10 @@ pipeline {
   stages {
     stage('Build') {
       when {
-        branch 'master' //only run these steps on the master branch
+        anyOf {
+          branch 'master'
+          branch 'develop'
+        }
       }
       steps {
         parallel (
@@ -22,7 +25,7 @@ pipeline {
     }
     stage('Publish') {
       when {
-        branch 'master' //only run these steps on the master branch
+        branch 'master' 
       }
       steps {
         parallel (
@@ -43,7 +46,7 @@ pipeline {
     }
     stage('Deploy') {
       when {
-        branch 'master' //only run these steps on the master branch
+        branch 'master' 
       }
       steps {
         parallel (
