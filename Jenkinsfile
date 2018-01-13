@@ -44,6 +44,14 @@ pipeline {
         )
       }
     }
+    stage('Human Check - Publish app to the cloud') {
+      when {
+        branch 'master' 
+      }
+      steps {
+        input "Can I publish builded and published app to the Cellarstone Cloud ? Automatically will be deployed . . . "
+      }
+    }
     stage('Deploy') {
       when {
         branch 'master' 
