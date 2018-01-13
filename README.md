@@ -60,3 +60,9 @@ kubectl delete statefulsets --all
 ```
 
 
+# Versions
+
+
+Version | Description 
+--- | ---
+0.1 | Initial version. Find this TAG in history
