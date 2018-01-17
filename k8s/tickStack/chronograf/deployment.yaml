@@ -15,13 +15,6 @@ spec:
         name: chronograf
         ports:
         - containerPort: 8888
-        resources:
-          limits:
-            cpu: 1
-            memory: 1Gi
-          requests:
-            cpu: 100m
-            memory: 10Mi
         volumeMounts:
         - name: chronograf
           mountPath: /var/lib/chronograf
