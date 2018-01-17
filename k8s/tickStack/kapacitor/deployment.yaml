@@ -15,18 +15,11 @@ spec:
         name: kapacitor
         env:
         - name: KAPACITOR_HOSTNAME
-          value: kapacitor.tick
+          value: kapacitor
         - name: KAPACITOR_INFLUXDB_0_URLS_0
-          value: http://influxdb.tick:8086
+          value: http://influxdb:8086
         ports:
         - containerPort: 9092
-        resources:
-          limits:
-            cpu: 8
-            memory: 16Gi
-          requests:
-            cpu: 100m
-            memory: 10Mi
         volumeMounts:
         - name: kapacitor
           mountPath: /var/lib/kapacitor
