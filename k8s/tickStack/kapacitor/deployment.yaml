@@ -23,6 +23,13 @@ spec:
         volumeMounts:
         - name: kapacitor
           mountPath: /var/lib/kapacitor
+        resources:
+          limits:
+            cpu: 4
+            memory: 8Gi
+          requests:
+            cpu: 100m
+            memory: 10Mi
       volumes:
       - name: kapacitor
         gcePersistentDisk:
