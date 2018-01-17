@@ -9,3 +9,5 @@ You must create disk in you GCE
 You must copy config files 
 
 `kubectl create configmap influxdb-config --from-file k8s/tickStack/influxdb/influxdb.conf`
+
+`kubectl create configmap telegraf-config --from-file k8s/tickStack/telegraf/telegraf.conf`

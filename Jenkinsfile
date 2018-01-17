@@ -84,6 +84,8 @@ pipeline {
             sh 'kubectl apply -f k8s/tickStack/kapacitor/deployment.yaml'
             sh 'kubectl apply -f k8s/tickStack/kapacitor/service.yaml'
 
+            sh 'kubectl apply -f k8s/tickStack/telegraf/daemonset.yaml'
+
             sh 'kubectl apply -f k8s/tickStack/chronograf/deployment.yaml'
             sh 'kubectl apply -f k8s/tickStack/chronograf/service.yaml'
             
