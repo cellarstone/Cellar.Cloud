@@ -78,7 +78,7 @@ pipeline {
           tickstack: {
             sh 'gcloud container clusters get-credentials cellarcloud --zone europe-west1-b --project cellarstone-1488228226623'
 
-            sh 'kubectl create configmap --namespace tick influxdb-config --from-file k8s/tickStack/influxdb/influxdb.conf'
+            sh 'kubectl create configmap influxdb-config --from-file k8s/tickStack/influxdb/influxdb.conf'
 
             sh 'kubectl apply -f k8s/tickStack/influxdb/deployment.yaml'
             sh 'kubectl apply -f k8s/tickStack/influxdb/service.yaml'
