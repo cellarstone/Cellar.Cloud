@@ -20,13 +20,6 @@ spec:
           mountPath: /etc/influxdb
         - name: influxdb
           mountPath: /var/lib/influxdb
-        resources:
-          limits:
-            cpu: 8
-            memory: 25Gi
-          requests:
-            cpu: 100m
-            memory: 10Mi
       volumes:
       - name: config-volume
         configMap:
