@@ -11,6 +11,12 @@ pipeline {
       }
       steps {
         parallel (
+          webcellarstone: {
+            sh 'docker build -t webcellarstone ./Web_CELLAR'
+          },
+          webiav: {
+            sh 'docker build -t webiav ./Web_IAV'
+          },
           admin: {
             sh 'docker build -t cloudadmin ./Admin'
           },
@@ -18,7 +24,7 @@ pipeline {
             sh 'docker build -t cloudapi ./Api'
           },
           nginx: {
-            sh 'docker build -t cloudnginx ./nginx'
+            sh 'docker build -t cloudnginx ./Nginx'
           }
         )
       }
@@ -29,6 +35,14 @@ pipeline {
       }
       steps {
         parallel (
+          webcellarstone: {
+            sh 'docker tag webcellarstone eu.gcr.io/cellarstone-1488228226623/webcellarstone:0.0.1'
+            sh 'gcloud docker -- push eu.gcr.io/cellarstone-1488228226623/webcellarstone:0.0.1'
+          },
+          webiav: {
+            sh 'docker tag webiav eu.gcr.io/cellarstone-1488228226623/webiav:0.0.1'
+            sh 'gcloud docker -- push eu.gcr.io/cellarstone-1488228226623/webiav:0.0.1'
+          },
           admin: {
             sh 'docker tag cloudadmin eu.gcr.io/cellarstone-1488228226623/cloudadmin:0.0.1'
             sh 'gcloud docker -- push eu.gcr.io/cellarstone-1488228226623/cloudadmin:0.0.1'
@@ -58,6 +72,14 @@ pipeline {
       }
       steps {
         parallel (
+          webcellarstone: {
+            sh 'gcloud container clusters get-credentials cellarcloud --zone europe-west1-b --project cellarstone-1488228226623'
+            sh 'kubectl apply -f k8s/webcellarstone.yaml'
+          },
+          webiav: {
+            sh 'gcloud container clusters get-credentials cellarcloud --zone europe-west1-b --project cellarstone-1488228226623'
+            sh 'kubectl apply -f k8s/webiav.yaml'
+          },
           admin: {
             sh 'gcloud container clusters get-credentials cellarcloud --zone europe-west1-b --project cellarstone-1488228226623'
             sh 'kubectl apply -f k8s/admin.yaml'
@@ -75,26 +97,31 @@ pipeline {
             sh 'gcloud container clusters get-credentials cellarcloud --zone europe-west1-b --project cellarstone-1488228226623'
             sh 'kubectl apply -f k8s/mongodb.yaml'
           },
-          tickstack: {
+          pubsub: {
             sh 'gcloud container clusters get-credentials cellarcloud --zone europe-west1-b --project cellarstone-1488228226623'
-
-            sh 'kubectl delete configmap telegraf-config'
-            sh 'kubectl create configmap telegraf-config --from-file k8s/tickStack/telegraf/telegraf.conf'
-            sh 'kubectl delete configmap influxdb-config'
-            sh 'kubectl create configmap influxdb-config --from-file k8s/tickStack/influxdb/influxdb.conf'
-
-            sh 'kubectl apply -f k8s/tickStack/influxdb/deployment.yaml'
-            sh 'kubectl apply -f k8s/tickStack/influxdb/service.yaml'
-
-            sh 'kubectl apply -f k8s/tickStack/kapacitor/deployment.yaml'
-            sh 'kubectl apply -f k8s/tickStack/kapacitor/service.yaml'
-
-            sh 'kubectl apply -f k8s/tickStack/telegraf/daemonset.yaml'
-
-            sh 'kubectl apply -f k8s/tickStack/chronograf/deployment.yaml'
-            sh 'kubectl apply -f k8s/tickStack/chronograf/service.yaml'
-            
+            sh 'kubectl apply -f k8s/pubsub.yaml'
           }
+          // ,
+          // tickstack: {
+          //   sh 'gcloud container clusters get-credentials cellarcloud --zone europe-west1-b --project cellarstone-1488228226623'
+
+          //   // sh 'kubectl delete configmap telegraf-config'
+          //   // sh 'kubectl create configmap telegraf-config --from-file k8s/tickStack/telegraf/telegraf.conf'
+          //   sh 'kubectl delete configmap influxdb-config'
+          //   sh 'kubectl create configmap influxdb-config --from-file k8s/tickStack/influxdb/influxdb.conf'
+
+          //   sh 'kubectl apply -f k8s/tickStack/influxdb/deployment.yaml'
+          //   sh 'kubectl apply -f k8s/tickStack/influxdb/service.yaml'
+
+          //   sh 'kubectl apply -f k8s/tickStack/kapacitor/deployment.yaml'
+          //   sh 'kubectl apply -f k8s/tickStack/kapacitor/service.yaml'
+
+          //   // sh 'kubectl apply -f k8s/tickStack/telegraf/daemonset.yaml'
+
+          //   sh 'kubectl apply -f k8s/tickStack/chronograf/deployment.yaml'
+          //   sh 'kubectl apply -f k8s/tickStack/chronograf/service.yaml'
+            
+          // }
         )
       }
     }

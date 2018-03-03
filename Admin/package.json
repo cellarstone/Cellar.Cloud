@@ -1,9 +1,10 @@
 {
-  "name": "Cellar.Cloud.Admin",
+  "name": "cloud-admin",
   "version": "1.1.0",
   "angular-cli": {},
   "scripts": {
-    "myappbuild": "ng build"
+    "myappbuild": "node --max_old_space_size=8192 node_modules/.bin/ng build --prod",
+    "myserverbuild": "tsc server.ts"
   },
   "private": true,
   "dependencies": {
@@ -49,7 +50,7 @@
     "zone.js": "0.8.5"
   },
   "devDependencies": {
-    "@angular/cli": "^1.5.2",
+    "@angular/cli": "1.7.2",
     "@angular/compiler-cli": "^5.0.2",
     "@types/greensock": "1.15.32",
     "@types/highcharts": "^5.0.12",

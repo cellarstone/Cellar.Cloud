@@ -1,0 +1,61 @@
+version: '2'
+
+services:
+
+# PROXY ***************************
+
+  cloudnginx:
+    image: cellar.cloud.nginx
+    build:
+      context: ./Nginx
+      dockerfile: Dockerfile
+    ports:
+      - 80:80
+
+
+# CORE ***************************
+
+  cloudadmin:
+    image: cellar.cloud.admin
+    build:
+      context: ./Admin
+      dockerfile: Dockerfile
+
+  cloudapi:
+    image: cellar.cloud.api
+    build:
+      context: ./Api
+      dockerfile: Dockerfile
+    links:
+      - mongodb
+
+  webcellarstone:
+    image: cellar.web.cellarstone
+    build:
+      context: ./Web_CELLAR
+      dockerfile: Dockerfile
+
+  webiav:
+    image: cellar.web.iav
+    build:
+      context: ./Web_IAV
+      dockerfile: Dockerfile
+    
+
+# CORE - Third party ***************************
+
+# don't rename to the cellar.hub.** pattern
+# some stuffs with elaticsearch require the simple name pattern
+
+  mongodb:
+    image: mongo
+    ports:
+    - "27017:27017"
+    volumes:
+     - /data/cellarstone.cloud/mongodb:/data/db 
+
+  pubsub:
+    image: spotify/kafka
+    ports:
+    - "2181:2181"
+    - "9092:9092"
