@@ -33,7 +33,7 @@ spec:
     spec:
       containers:
       - name: cloudapi
-        image: eu.gcr.io/cellarstone-1488228226623/cloudapi:0.0.1
+        image: eu.gcr.io/cellarstone-1488228226623/cloudapi:0.0.3
         imagePullPolicy: Always
         ports:
         - containerPort: 55503
