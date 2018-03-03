@@ -46,7 +46,7 @@ export class PirPanel implements OnInit {
     this.setCharts();
 
     //websockets
-    this.socket = new Socket("ws://localhost:44406/ws/" + this.senzorName + "pir");
+    this.socket = new Socket(this.senzorName + "pir");
     this.socket.on('connect', this.onConnect.bind(this));
     this.socket.on('disconnect', this.onDisconnect.bind(this));
     this.socket.on('message', this.onMessage.bind(this));
@@ -72,7 +72,7 @@ export class PirPanel implements OnInit {
   /* CHECK Senzor Actual State */
   //*********************************/
 
-  private checkSenzor() {
+  checkSenzor() {
 
     // CHECK PIR
     let vm = new PublishToMqttModel();

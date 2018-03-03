@@ -1,0 +1,42 @@
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: webcellarstone
+    component: webcellarstone
+  name: webcellarstone
+spec:
+  selector:
+    app: webcellarstone
+    component: webcellarstone
+  ports:
+   - port: 55501
+  type: ClusterIP
+---
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: webcellarstone
+spec:
+  replicas: 2
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 0
+  minReadySeconds: 5
+  template:
+    metadata:
+      labels:
+        app: webcellarstone
+        component: webcellarstone
+    spec:
+      containers:
+      - name: webcellarstone
+        image: eu.gcr.io/cellarstone-1488228226623/webcellarstone:0.0.1
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 55501
+      imagePullSecrets:
+      - name: registry-key
+

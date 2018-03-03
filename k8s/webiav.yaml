@@ -1,0 +1,42 @@
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: webiav
+    component: webiav
+  name: webiav
+spec:
+  selector:
+    app: webiav
+    component: webiav
+  ports:
+   - port: 55591
+  type: ClusterIP
+---
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: webiav
+spec:
+  replicas: 2
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 0
+  minReadySeconds: 5
+  template:
+    metadata:
+      labels:
+        app: webiav
+        component: webiav
+    spec:
+      containers:
+      - name: webiav
+        image: eu.gcr.io/cellarstone-1488228226623/webiav:0.0.1
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 55591
+      imagePullSecrets:
+      - name: registry-key
+
