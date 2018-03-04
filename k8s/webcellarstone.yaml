@@ -33,7 +33,7 @@ spec:
     spec:
       containers:
       - name: webcellarstone
-        image: eu.gcr.io/cellarstone-1488228226623/webcellarstone:0.0.5
+        image: eu.gcr.io/cellarstone-1488228226623/webcellarstone:0.0.6
         imagePullPolicy: Always
         ports:
         - containerPort: 55501
