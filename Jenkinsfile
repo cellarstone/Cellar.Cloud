@@ -4,10 +4,10 @@ pipeline {
   stages {
     stage('Build') {
       when {
-        anyOf {
+        // anyOf {
           branch 'master'
-          branch 'develop'
-        }
+       // branch 'develop'
+       // }
       }
       steps {
         parallel (
