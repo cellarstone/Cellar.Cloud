@@ -7,26 +7,17 @@ import { environment } from '../../environments/environment';
 
 @Injectable()
 export class AuthService {
-  isProduction = environment.production;
-  auth0 = new auth0.WebAuth(); 
   
-
-  constructor(public router: Router) {
-
-  if(this.isProduction){
-    AUTH_CONFIG.callbackURL = "https://www.cellarstone.cz/callback";
-  } else {
-    AUTH_CONFIG.callbackURL = "http://localhost:55501/callback";
-  }
-
-  this.auth0 = new auth0.WebAuth({
+  auth0 = new auth0.WebAuth({
     clientID: AUTH_CONFIG.clientID,
     domain: AUTH_CONFIG.domain,
     responseType: 'token id_token',
     audience: `https://${AUTH_CONFIG.domain}/userinfo`,
-    redirectUri: AUTH_CONFIG.callbackURL,
+    redirectUri: environment.callbackUrl,
     scope: 'openid'
   });
+
+  constructor(public router: Router) {
 
   }
 
