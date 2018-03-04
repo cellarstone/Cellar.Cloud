@@ -10,13 +10,16 @@ import { AboutComponent } from './views/about/about.component';
 import { ContactComponent } from './views/contact/contact.component';
 import { MyrouterModule } from './myrouter.module';
 
+import { UnderconstructionComponent } from './views/underconstruction/underconstruction.component';
+
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
     AboutComponent,
-    ContactComponent
+    ContactComponent,
+    UnderconstructionComponent
   ],
   imports: [
     BrowserModule,

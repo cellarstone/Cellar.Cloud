@@ -41,7 +41,7 @@ spec:
     spec:
       containers:
       - name: cloudnginx
-        image: eu.gcr.io/cellarstone-1488228226623/cloudnginx:0.0.6
+        image: eu.gcr.io/cellarstone-1488228226623/cloudnginx:0.0.7
         imagePullPolicy: Always
         ports:
         - containerPort: 443
