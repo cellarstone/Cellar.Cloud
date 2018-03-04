@@ -10,13 +10,19 @@ import { AboutComponent } from './views/about/about.component';
 import { ContactComponent } from './views/contact/contact.component';
 import { MyrouterModule } from './/myrouter.module';
 
+import { AuthService } from './auth/auth.service';
+import { CallbackComponent } from './callback/callback.component';
+import { UnderconstructionComponent } from './views/underconstruction/underconstruction.component';
+
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
     AboutComponent,
-    ContactComponent
+    ContactComponent,
+    CallbackComponent,
+    UnderconstructionComponent
   ],
   imports: [
     BrowserModule,
@@ -25,7 +31,7 @@ import { MyrouterModule } from './/myrouter.module';
     MybootstrapModule,
     MyrouterModule
   ],
-  providers: [],
+  providers: [AuthService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
