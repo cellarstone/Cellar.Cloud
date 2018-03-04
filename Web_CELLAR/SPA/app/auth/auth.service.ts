@@ -3,10 +3,23 @@ import { AUTH_CONFIG } from './auth0-variables';
 import { Router } from '@angular/router';
 import * as auth0 from 'auth0-js';
 
+import { environment } from '../../environments/environment';
+
 @Injectable()
 export class AuthService {
+  isProduction = environment.production;
+  auth0 = new auth0.WebAuth(); 
+  
 
-  auth0 = new auth0.WebAuth({
+  constructor(public router: Router) {
+
+  if(this.isProduction){
+    AUTH_CONFIG.callbackURL = "https://www.cellarstone.cz/callback";
+  } else {
+    AUTH_CONFIG.callbackURL = "http://localhost:55501/callback";
+  }
+
+  this.auth0 = new auth0.WebAuth({
     clientID: AUTH_CONFIG.clientID,
     domain: AUTH_CONFIG.domain,
     responseType: 'token id_token',
@@ -15,7 +28,7 @@ export class AuthService {
     scope: 'openid'
   });
 
-  constructor(public router: Router) {}
+  }
 
   public login(): void {
     this.auth0.authorize();

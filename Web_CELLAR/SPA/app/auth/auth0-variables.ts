@@ -7,5 +7,5 @@ interface AuthConfig {
 export const AUTH_CONFIG: AuthConfig = {
   clientID: 'Cywk2lLNBbW796ZkkDYLBhRlCTQs08WI',
   domain: 'cellarstone-europe.eu.auth0.com',
-  callbackURL: 'http://localhost:55501/callback'
+  callbackURL: ''
 };
