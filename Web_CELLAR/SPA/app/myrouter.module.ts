@@ -10,8 +10,7 @@ import { UnderconstructionComponent } from './views/underconstruction/underconst
 
 
 const routes: Routes = [
- { path: '', redirectTo: '/home', pathMatch: 'full' },
- { path: 'home', component: HomeComponent },
+ { path: '', component: HomeComponent },
  { path: 'about', component: ContactComponent },
  { path: 'contact', component: AboutComponent },
  { path: 'callback', component: CallbackComponent },
