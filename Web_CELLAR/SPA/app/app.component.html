@@ -1,4 +1,6 @@
-<mat-sidenav-container class="example-container">
+<app-underconstruction *ngIf="!auth.isAuthenticated()"></app-underconstruction>
+
+<mat-sidenav-container class="example-container" *ngIf="auth.isAuthenticated()">
   <mat-sidenav #sidenav mode="side">
  
     <mat-nav-list>
