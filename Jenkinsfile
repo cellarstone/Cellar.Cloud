@@ -36,24 +36,24 @@ pipeline {
       steps {
         parallel (
           webcellarstone: {
-            sh 'docker tag webcellarstone eu.gcr.io/cellarstone-1488228226623/webcellarstone:0.0.7'
-            sh 'gcloud docker -- push eu.gcr.io/cellarstone-1488228226623/webcellarstone:0.0.7'
+            sh 'docker tag webcellarstone eu.gcr.io/cellarstone-1488228226623/webcellarstone:0.0.8'
+            sh 'gcloud docker -- push eu.gcr.io/cellarstone-1488228226623/webcellarstone:0.0.8'
           },
           webiav: {
-            sh 'docker tag webiav eu.gcr.io/cellarstone-1488228226623/webiav:0.0.7'
-            sh 'gcloud docker -- push eu.gcr.io/cellarstone-1488228226623/webiav:0.0.7'
+            sh 'docker tag webiav eu.gcr.io/cellarstone-1488228226623/webiav:0.0.8'
+            sh 'gcloud docker -- push eu.gcr.io/cellarstone-1488228226623/webiav:0.0.8'
           },
           admin: {
-            sh 'docker tag cloudadmin eu.gcr.io/cellarstone-1488228226623/cloudadmin:0.0.7'
-            sh 'gcloud docker -- push eu.gcr.io/cellarstone-1488228226623/cloudadmin:0.0.7'
+            sh 'docker tag cloudadmin eu.gcr.io/cellarstone-1488228226623/cloudadmin:0.0.8'
+            sh 'gcloud docker -- push eu.gcr.io/cellarstone-1488228226623/cloudadmin:0.0.8'
           },
           api: {
-            sh 'docker tag cloudapi eu.gcr.io/cellarstone-1488228226623/cloudapi:0.0.7'
-            sh 'gcloud docker -- push eu.gcr.io/cellarstone-1488228226623/cloudapi:0.0.7'
+            sh 'docker tag cloudapi eu.gcr.io/cellarstone-1488228226623/cloudapi:0.0.8'
+            sh 'gcloud docker -- push eu.gcr.io/cellarstone-1488228226623/cloudapi:0.0.8'
           },
           nginx: {
-            sh 'docker tag cloudnginx eu.gcr.io/cellarstone-1488228226623/cloudnginx:0.0.7'
-            sh 'gcloud docker -- push eu.gcr.io/cellarstone-1488228226623/cloudnginx:0.0.7'
+            sh 'docker tag cloudnginx eu.gcr.io/cellarstone-1488228226623/cloudnginx:0.0.8'
+            sh 'gcloud docker -- push eu.gcr.io/cellarstone-1488228226623/cloudnginx:0.0.8'
           }
         )
       }
