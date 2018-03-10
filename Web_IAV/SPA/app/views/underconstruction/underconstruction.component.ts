@@ -10,6 +10,9 @@ declare var MorphSVGPlugin: any;
 declare var Cubic: any;
 declare var Power0: any;
 declare var Power1: any;
+declare var Power2: any;
+declare var Power3: any;
+declare var Power4: any;
 declare var morphSVG: any;
 
 
@@ -25,95 +28,97 @@ export class UnderconstructionComponent implements OnInit {
   // constructor(public auth: AuthService) { }
 
   ngOnInit() {
-    this.mainTl.add(this.setUp());
-    this.mainTl.add(this.forkliftAnimation());
+    this.mainTl.add(this.randomFactors())
+    .add(this.randomFactors2())
+    .add(this.icons())
+    .seek("start+=5.5");
   }
 
   logoclick(){
     // this.auth.login()
   }
 
-  setUp() {
-    let set = new TimelineMax();
+  icons() {
+    var icons = new TimelineMax();
+      icons
+      .add('start')
+      .to('#cloud-1', 120, {rotation: -360, transformOrigin: 'center', ease:Power0.easeNone, repeat: -1}, 'start')
+      .to('#cloud-2', 120, {rotation: -360, transformOrigin: 'center', ease:Power0.easeNone, repeat: -1}, 'start')
+      .to('#cloud-3', 120, {rotation: -360, transformOrigin: 'center', ease:Power0.easeNone, repeat: -1}, 'start')
+      .to('#wifi-1', 120, {rotation: -360, transformOrigin: 'center', ease:Power0.easeNone, repeat: -1}, 'start')
+      .to('#wifi-2', 120, {rotation: -360, transformOrigin: 'center', ease:Power0.easeNone, repeat: -1}, 'start')
+      .to('#wifi-3', 120, {rotation: -360, transformOrigin: 'center', ease:Power0.easeNone, repeat: -1}, 'start')
+      .to('#globe-1', 120, {rotation: -360, transformOrigin: 'center', ease:Power0.easeNone, repeat: -1}, 'start')
+      .to('#globe-2', 120, {rotation: -360, transformOrigin: 'center', ease:Power0.easeNone, repeat: -1}, 'start')
+      .to('#globe-3', 120, {rotation: -360, transformOrigin: 'center', ease:Power0.easeNone, repeat: -1}, 'start')
+      .to('#globe-4', 120, {rotation: -360, transformOrigin: 'center', ease:Power0.easeNone, repeat: -1}, 'start')
+      .to('#icons', 120, {rotation: 360, transformOrigin: 'center', ease:Power0.easeNone, repeat: -1}, 'start')
+      .to('#objects-front', 240, {rotation: 360, transformOrigin: 'center', ease:Power0.easeNone, repeat: -1}, 'start')
+      .to('#objects-behind', 540, {rotation: 360, transformOrigin: 'center', ease:Power0.easeNone, repeat: -1}, 'start');
+    
+    icons.timeScale(1.5);
+    return icons; 
+  }
+  randomFactors() {
+    var random = new TimelineMax({repeat: -1, yoyo: true});
+    random
   
-    set
-      .set('#cloud-1', {x: '-100%'})
-      .set('#crane', {x: '100%'})
-      .set('#forklift', {x: '-200px', y: '-25px'})
-      .set('#logo', {x: '80px', y:'3px'})
-      .set('#logo-hook', {scale: 1.01, transformOrigin: 'center', x: '434.75px', y:'-385px'})
-      .set('#text', {text: 'haha'})
-      .set('#worker-2', {scale: .9, transformOrigin: 'bottom center'})
-      .set('#worker-1', {autoAlpha: 0});
-    return set;
+      .fromTo('#blink-1', Math.random()*1, {autoAlpha: 0, scale: 0, transformOrigin: 'center'}, {autoAlpha: 1, scale: 1, transformOrigin: 'center'})
+      .fromTo('#blink-2', Math.random()*0.5, {autoAlpha: 0, scale: 0, transformOrigin: 'center'}, {autoAlpha: 1, scale: 1, transformOrigin: 'center'})
+      .fromTo('#blink-3', Math.random()*0.75, {autoAlpha: 0, scale: 0, transformOrigin: 'center'}, {autoAlpha: 1, scale: 1, transformOrigin: 'center'})
+      .fromTo('#blink-4', Math.random()*0.15, {autoAlpha: 0, scale: 0, transformOrigin: 'center'}, {autoAlpha: 1, scale: 1, transformOrigin: 'center'})
+      .fromTo('#blink-5', Math.random()*0.25, {autoAlpha: 0, scale: 0, transformOrigin: 'center'}, {autoAlpha: 1, scale: 1, transformOrigin: 'center'})
+      .fromTo('#blink-6', Math.random()*0.25, {autoAlpha: 0, scale: 0, transformOrigin: 'center'}, {autoAlpha: 1, scale: 1, transformOrigin: 'center'})
+      .fromTo('#blink-7', Math.random()*0.15, {autoAlpha: 0, scale: 0, transformOrigin: 'center'}, {autoAlpha: 1, scale: 1, transformOrigin: 'center'})
+      .fromTo('#blink-8', Math.random()*0.25, {autoAlpha: 0, scale: 0, transformOrigin: 'center'}, {autoAlpha: 1, scale: 1, transformOrigin: 'center'})
+      .fromTo('#blink-9', Math.random()*0.25, {autoAlpha: 0, scale: 0, transformOrigin: 'center'}, {autoAlpha: 1, scale: 1, transformOrigin: 'center'},)
+      .fromTo('#blink-10', Math.random()*0.25, {autoAlpha: 0, scale: 0, transformOrigin: 'center'}, {autoAlpha: 1, scale: 1, transformOrigin: 'center'})
+      .fromTo('#blink-11', Math.random()*0.25, {autoAlpha: 0, scale: 0, transformOrigin: 'center'}, {autoAlpha: 1, scale: 1, transformOrigin: 'center'})
+      .fromTo('#blink-12', Math.random()*0.25, {autoAlpha: 0, scale: 0, transformOrigin: 'center'}, {autoAlpha: 1, scale: 1, transformOrigin: 'center'})
+      .fromTo('#blink-13', Math.random()*0.25, {autoAlpha: 0, scale: 0, transformOrigin: 'center'}, {autoAlpha: 1, scale: 1, transformOrigin: 'center'})
+      .fromTo('#blink-14', Math.random()*0.25, {autoAlpha: 0, scale: 0, transformOrigin: 'center'}, {autoAlpha: 1, scale: 1, transformOrigin: 'center'})
+      .fromTo('#blink-15', Math.random()*0.25, {autoAlpha: 0, scale: 0, transformOrigin: 'center'}, {autoAlpha: 1, scale: 1, transformOrigin: 'center'})
+      .fromTo('#blink-16', Math.random()*0.25, {autoAlpha: 0, scale: 0, transformOrigin: 'center'}, {autoAlpha: 1, scale: 1, transformOrigin: 'center'})
+      .fromTo('#blink-17', Math.random()*0.25, {autoAlpha: 0, scale: 0, transformOrigin: 'center'}, {autoAlpha: 1, scale: 1, transformOrigin: 'center'})
+      .fromTo('#blink-18', Math.random()*0.25, {autoAlpha: 0, scale: 0, transformOrigin: 'center'}, {autoAlpha: 1, scale: 1, transformOrigin: 'center'})
+      .fromTo('#blink-19', Math.random()*0.25, {autoAlpha: 0, scale: 0, transformOrigin: 'center'}, {autoAlpha: 1, scale: 1, transformOrigin: 'center'})
+    return random;
+  }
+  randomFactors2() {
+    var random2 = new TimelineMax({repeat: -1, yoyo: true});
+  
+    random2
+    .fromTo('#shine-1', Math.random()*1, {scale: 0, autoAlpha: 0}, {scale: 1, autoAlpha: 1, rotation: 360, transformOrigin: 'center', ease:Power2.easeInOut})
+    .fromTo('#shine-2', Math.random()*1, {scale: 0, autoAlpha: 0}, {scale: 1, autoAlpha: 1, rotation: 360, transformOrigin: 'center', ease:Power3.easeInOut})
+    .fromTo('#shine-3', Math.random()*1, {scale: 0, autoAlpha: 0}, {scale: 1, autoAlpha: 1, rotation: 360, transformOrigin: 'center', ease:Power4.easeInOut})
+    .fromTo('#shine-4', Math.random()*1, {scale: 0, autoAlpha: 0}, {scale: 1, autoAlpha: 1, rotation: 360, transformOrigin: 'center', ease:Power0.easeNone})
+      
+    return random2;
   }
 
+  clear() {
+    var clear = new TimelineMax();
   
-forkliftAnimation() {
-  let forklift = new TimelineMax();
-
-  forklift
-    .add('forklift')
-
-    .to('#refresh', 1.25, {rotation: 360, transformOrigin: 'center', ease:Power0.easeNone, repeat: -1}, 'forklift')
-    .to('#driller', .1, {y: '30%', ease:Power0.easeNone, repeat: -1}, 'forklift')
-    .to('#worker-2', .1, {y: '2%', ease:Power0.easeNone, repeat: -1}, 'forklift')
-    .to('#head', .2, {y: '3%', ease:Power0.easeNone, repeat: -1}, 'forklift')
-  .to('#refresh', 1.25, {rotation: 360, transformOrigin: 'center', ease:Power0.easeNone, repeat: -1}, 'forklift')
-  .to('#cloud-1', 100, {x: '1000%', ease:Power0.easeNone}, 'forklift')
-  .to('#cloud-2', 50, {x: '500%', ease:Power0.easeNone, yoyo: true}, 'forklift')
-  .to('#cloud-3', 100, {x: '-1000%', ease:Power0.easeNone}, 'forklift')
-
-    .set('#text', {text:"plz"}, 'forklift+=1')
-
-    .to('#forklift', 3, {x: '0', ease:Power1.easeOut}, 'forklift')
-    .to('#wheel-front', 3, {rotation: 540, transformOrigin: 'center', ease:Power1.easeOut}, 'forklift')
-    .to('#wheel-back', 3, {rotation: 540, transformOrigin: 'center', ease:Power1.easeOut}, 'forklift')
-
-    .add('getting-icon')
-    .to('#lifter', 1, {rotation: 5, transformOrigin: '10px 110px', ease:Power0.easeNone}, 'getting-icon')
-    .to('#lifter-front', 1, {y: '20px', ease:Power0.easeNone})
-
-    // moc ppomaly, zrychlit
-    .add('lifting-icon')
-    .to('#forklift', 3, {x: '80', ease:Power1.easeOut}, 'lifting-icon')
-    .to('#wheel-front', 3, {rotation: 900, transformOrigin: 'center', ease:Power1.easeOut}, 'lifting-icon')
-    .to('#wheel-back', 3, {rotation: 900, transformOrigin: 'center', ease:Power1.easeOut}, 'lifting-icon')
-    .to('#logo', 2, {rotation: 4, transformOrigin: 'bottom right', delay: .5, ease:Power1.easeOut}, 'lifting-icon')
-
-    .add('icon-up')
-    .to('#lifter', 1, {rotation: -5, transformOrigin: '10px 110px', ease:Power0.easeNone}, 'icon-up')
-    .to('#logo', 1, {x: 85, y: -2, rotation: -6, transformOrigin: 'bottom left', ease:Power0.easeNone}, 'icon-up')
-
-    .add('lift-up')
-    .to('#lifter-front', 1, {y: '-=35', ease:Power0.easeNone}, 'lift-up')
-    .to('#logo', 1, {x: '-=3', y: '-=35', ease:Power0.easeNone}, 'lift-up')
-    
-    
-    .add('go')
-    .to('#forklift', 5, {x: '+=1500px', ease:Power1.easeIn}, 'go')
-    .to('#wheel-front', 5, {rotation: '+=3600', transformOrigin: 'center', ease:Power1.easeIn}, 'go')
-    .to('#wheel-back', 5, {rotation: '+=3600', transformOrigin: 'center', ease:Power1.easeIn}, 'go')
-    .to('#logo', 5, {x: '+=1500px', ease:Power1.easeIn}, 'go')
-
-    .add('crane')
-    .set('#logo', {y: '-=200'})
-    .to('#crane', 15, {x: '-18%', ease:Power1.easeOut}, 'crane')
-    .to('#hook', 7, {rotation: -15, transformOrigin: 'upper center', ease:Power1.easeInOut}, 'crane')
-    .to('#hook', 5, {rotation: 10, transformOrigin: 'upper center', ease:Power1.easeInOut}, 'crane+=8')
-    .to('#hook', 3, {rotation: -5, transformOrigin: 'upper center', ease:Power1.easeInOut}, 'crane+=13')
-    .add('balance-hook')
-    .to('#hook', 2, {rotation: 2, transformOrigin: 'upper center', ease:Power1.easeInOut}, 'balance-hook')
-    .to('#hook', 1, {rotation: 0, transformOrigin: 'upper center', ease:Power1.easeInOut}, 'balance-hook+=2')
-
-    .add('arm')
-    .to('#hook', 5, {x: -79, y: 50 , ease:Power1.easeOut}, 'arm')
-    
-    .to('#arm', 5, {rotation: -9, transformOrigin: 'bottom right', ease:Power1.easeOut}, 'arm')
-    .to('#hydraulic', 5, {rotation: -8, transformOrigin: 'bottom right', ease:Power1.easeOut}, 'arm')
-    .add('logo-down')
-    .to('#hook', 2, {y: '+=51.5', ease:Power1.easeInOut}, 'logo-down');
-  return forklift;
-}
-
+    clear
+      .set('#blink-1', {autoAlpha: 0, scale: 0, transformOrigin: 'center'})
+      .set('#blink-2', {autoAlpha: 0, scale: 0, transformOrigin: 'center'})
+      .set('#blink-3', {autoAlpha: 0, scale: 0, transformOrigin: 'center'})
+      .set('#blink-4', {autoAlpha: 0, scale: 0, transformOrigin: 'center'})
+      .set('#blink-5', {autoAlpha: 0, scale: 0, transformOrigin: 'center'})
+      .set('#blink-6', {autoAlpha: 0, scale: 0, transformOrigin: 'center'})
+      .set('#blink-7', {autoAlpha: 0, scale: 0, transformOrigin: 'center'})
+      .set('#blink-8', {autoAlpha: 0, scale: 0, transformOrigin: 'center'})
+      .set('#blink-9', {autoAlpha: 0, scale: 0, transformOrigin: 'center'})
+      .set('#blink-10', {autoAlpha: 0, scale: 0, transformOrigin: 'center'})
+      .set('#blink-11', {autoAlpha: 0, scale: 0, transformOrigin: 'center'})
+      .set('#blink-12', {autoAlpha: 0, scale: 0, transformOrigin: 'center'})
+      .set('#blink-13', {autoAlpha: 0, scale: 0, transformOrigin: 'center'})
+      .set('#blink-14', {autoAlpha: 0, scale: 0, transformOrigin: 'center'})
+      .set('#blink-15', {autoAlpha: 0, scale: 0, transformOrigin: 'center'})
+      .set('#blink-16', {autoAlpha: 0, scale: 0, transformOrigin: 'center'})
+      .set('#blink-17', {autoAlpha: 0, scale: 0, transformOrigin: 'center'})
+      .set('#blink-18', {autoAlpha: 0, scale: 0, transformOrigin: 'center'})
+      .set('#blink-19', {autoAlpha: 0, scale: 0, transformOrigin: 'center'});
+    return clear;
+  }
 }
