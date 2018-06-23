@@ -1,0 +1,11 @@
+
+<div class="ui-g list-header">
+  <button type="button" class="list-header__button--add" icon="fa-plus" label="Add Workflow" (click)="newWorkflow()">Add Workflow</button>
+  <h3 class="list-header__text">List of Workflows</h3>
+</div>
+
+
+<div *ngIf="items$ | async">
+  <app-workflow-list [items]="items$ | async" (onSelect)="selectWorkflow($event)"></app-workflow-list>
+</div>
+

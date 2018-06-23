@@ -32,13 +32,13 @@ services:
   webcellarstone:
     image: cellar.web.cellarstone
     build:
-      context: ./Web_CELLAR
+      context: ./WebCellarstone
       dockerfile: Dockerfile
 
   webiav:
     image: cellar.web.iav
     build:
-      context: ./Web_IAV
+      context: ./WebIAV
       dockerfile: Dockerfile
     
 

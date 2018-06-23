@@ -20,6 +20,7 @@ RUN ls -l
 
 # BUILD APP and SERVER
 RUN npm run-script myappbuild
+# RUN npm run-script myserverbuild
 
 
 # -------------------------------------------------
@@ -27,11 +28,10 @@ RUN npm run-script myappbuild
 # -------------------------------------------------
 FROM node:9-alpine
 
-COPY --from=builder /usr/src/app/wwwroot /usr/src/app/wwwroot
+COPY --from=builder /usr/src/app/dist /usr/src/app/dist
 # COPY --from=builder /usr/src/app/node_modules /usr/src/app/node_modules
 COPY --from=builder /usr/src/app/package.json /usr/src/app/package.json
-COPY --from=builder /usr/src/app/server.js /usr/src/app/server.js
-
+# COPY --from=builder /usr/src/app/server.js /usr/src/app/server.js
 
 WORKDIR /usr/src/app
 
@@ -53,10 +53,8 @@ RUN npm install -g http-server
 
 # WORKDIR /usr/src/app
 
-# RUN npm install
-
 # RUN pwd
 # RUN ls -l
 
-#CMD node server.js
+# CMD node server.js
 CMD http-server -c-1 -p 55502 dist/
