@@ -19,6 +19,7 @@ apiVersion: extensions/v1beta1
 metadata:
   name: kafka-broker1
 spec:
+  revisionHistoryLimit: 1
   template:
     metadata:
       labels:
@@ -67,6 +68,7 @@ apiVersion: extensions/v1beta1
 metadata:
   name: zookeeper-deployment-1
 spec:
+  revisionHistoryLimit: 1
   template:
     metadata:
       labels:
