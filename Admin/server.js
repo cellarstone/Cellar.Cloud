@@ -1,23 +1,23 @@
-import * as express from "express";
-import * as path from "path";
-// import * as favicon from "serve-favicon";
-// import * as cookieParser from "cookie-parser";
-import * as bodyParser from "body-parser";
+// import * as express from "express";
+// import * as path from "path";
+// // import * as favicon from "serve-favicon";
+// // import * as cookieParser from "cookie-parser";
+// import * as bodyParser from "body-parser";
 
-// var path = require('path');
-// var favicon = require('serve-favicon');
+var path = require('path');
+var express = require('express');
 // var cookieParser = require('cookie-parser');
-// var bodyParser = require('body-parser');
+var bodyParser = require('body-parser');
 
 
-let server = express();
+const server = express();
 
 
 server.use(bodyParser.urlencoded({ extended: false }));
-server.use(express.static("wwwroot"));
+server.use(express.static("dist"));
 
 server.get('/*', function (req, res) {
-    res.sendFile('index.html' , { root : 'wwwroot'});
+    res.sendFile('index.html' , { root : 'dist'});
     // res.sendFile(path.join("wwwroot", 'index.html'));
 });
 

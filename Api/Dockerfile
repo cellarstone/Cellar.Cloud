@@ -1,35 +1,33 @@
 FROM golang
-ADD . $GOPATH/src/github.com/cellarstone/Cellar.Cloud/Cellar.Cloud.Api
+ADD . $GOPATH/src/github.com/cellarstone/Cellar.Cloud/Api
 
 
 
 # Cellar websockets - get packages & build
-WORKDIR $GOPATH/src/github.com/cellarstone/Cellar.Cloud/Cellar.Cloud.Api
-RUN go-wrapper download
-RUN go-wrapper install
-RUN go build -o cellarcloudapi  
+WORKDIR $GOPATH/src/github.com/cellarstone/Cellar.Cloud/Api
+
+
+RUN go get -u github.com/golang/dep/cmd/dep
+RUN dep ensure
+RUN GOOS=linux GOARCH=amd64 CGO_ENABLED=0 go build -o cellarcloudapi
 
 # helpers
 # RUN echo $GOPATH
 RUN pwd
 RUN ls -l
 
-
 # -----------------------
 # Stage 2
 # -----------------------
-#  FROM alpine:latest
-#  RUN apk --no-cache add ca-certificates
-# FROM golang:alpine
-FROM golang
-# RUN apk update && apk add bash
-EXPOSE 55503
+FROM alpine:3.5
+COPY --from=0 /go/src/github.com/cellarstone/Cellar.Cloud/Api/cellarcloudapi /app/cellarcloudapi
+RUN chmod +x /app/cellarcloudapi
 
-# WORKDIR /app
-COPY --from=0 /go/src/github.com/cellarstone/Cellar.Cloud/Cellar.Cloud.Api/cellarcloudapi .
 
-# RUN ls -l  
 
-CMD ["./cellarcloudapi"]
-# ENTRYPOINT ["/app/cellarcloudapi"]
+# helpers
+RUN ls -l  
+
+ENTRYPOINT /app/cellarcloudapi
+
 
