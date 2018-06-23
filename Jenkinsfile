@@ -12,10 +12,10 @@ pipeline {
       steps {
         parallel (
           webcellarstone: {
-            sh 'docker build -t webcellarstone ./Web_CELLAR'
+            sh 'docker build -t webcellarstone ./WebCellarstone'
           },
           webiav: {
-            sh 'docker build -t webiav ./Web_IAV'
+            sh 'docker build -t webiav ./WebIAV'
           },
           admin: {
             sh 'docker build -t cloudadmin ./Admin'
