@@ -1,4 +1,14 @@
 
+
+# Versions
+
+
+Version | Description 
+--- | ---
+0.1 | Initial version. Find this TAG in history
+0.22 | Change SSL (HTTPS) certificate
+
+
 # Ports
 
 Port | Application
@@ -25,8 +35,6 @@ gcloud container images list
 
 
 ```
-
-
 
 
 # Kubernetes CLI
@@ -63,13 +71,6 @@ kubectl delete statefulsets --all
 
 ```
 
-
-# Versions
-
-
-Version | Description 
---- | ---
-0.1 | Initial version. Find this TAG in history
 
 
 # SSL secrets

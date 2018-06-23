@@ -19,6 +19,7 @@ metadata:
   name: cloudadmin
 spec:
   replicas: 2
+  revisionHistoryLimit: 1
   strategy:
     type: RollingUpdate
     rollingUpdate:
@@ -33,7 +34,7 @@ spec:
     spec:
       containers:
       - name: cloudadmin
-        image: eu.gcr.io/cellarstone-1488228226623/cloudadmin:0.0.8
+        image: eu.gcr.io/cellarstone-1488228226623/cloudadmin:0.0.9
         imagePullPolicy: Always
         ports:
         - containerPort: 55502
