@@ -8,11 +8,13 @@ x86/
 bld/
 [Bb]in/
 [Oo]bj/
-[Ll]og/
+log/
 node_modules/
 wwwroot/
 output/
 *.zip
-
+vendor/
+*.lock
+debug
 
 

@@ -20,13 +20,12 @@ RUN ls -l
 
 # BUILD APP and SERVER
 RUN npm run-script myappbuild
-RUN npm run-script myserverbuild
 
 
 # -------------------------------------------------
 # Stage 2 
 # -------------------------------------------------
-FROM node:8-alpine
+FROM node:9-alpine
 
 COPY --from=builder /usr/src/app/wwwroot /usr/src/app/wwwroot
 # COPY --from=builder /usr/src/app/node_modules /usr/src/app/node_modules
@@ -39,8 +38,8 @@ WORKDIR /usr/src/app
 RUN pwd
 RUN ls -l
 
-RUN npm install express
-
+# RUN npm install express
+RUN npm install -g http-server
 
 # RUN npm install --only=production
 
@@ -59,4 +58,5 @@ RUN npm install express
 # RUN pwd
 # RUN ls -l
 
-CMD node server.js
+#CMD node server.js
+CMD http-server -c-1 -p 55502 dist/
