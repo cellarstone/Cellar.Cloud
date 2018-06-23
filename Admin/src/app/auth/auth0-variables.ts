@@ -5,6 +5,6 @@ interface AuthConfig {
 }
 
 export const AUTH_CONFIG: AuthConfig = {
-  clientID: 'KLqb4zg1HnvQfr3f3VWjkDpMNIC0Not6',
+  clientID: 'FFyzV6FvTB6DYWihHjLciMQHozQMTjOg',
   domain: 'cellarstone-europe.eu.auth0.com'
 };
