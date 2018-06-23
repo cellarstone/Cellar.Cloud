@@ -34,7 +34,7 @@ spec:
     spec:
       containers:
       - name: webiav
-        image: eu.gcr.io/cellarstone-1488228226623/webiav:0.1.1
+        image: eu.gcr.io/cellarstone-1488228226623/webiav:0.1.2
         imagePullPolicy: Always
         ports:
         - containerPort: 55591

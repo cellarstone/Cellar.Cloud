@@ -5,5 +5,5 @@ export const environment = {
     iotUrl: "https://iot.cellarstone.cz",
     officeApiUrl: "https://officeapi.cellarstone.cz",
     workflowUrl: "https://workflow.cellarstone.cz",
-    callbackUrl: "https://admin.cellarstone.cz/#/callback"
+    callbackUrl: "https://admin.cellarstone.cz/callback"
 };
