@@ -1,0 +1,44 @@
+<div id="senzor-detail">
+
+
+    <div *ngIf="item$ | async">
+        <div class="ui-g-12 ui-sm-12 ui-lg-12">
+
+
+            <div class="ui-g title">
+                <h3 class="title__text title__text--red" *ngIf="id === '0'">New Senzor</h3>
+                <h3 class="title__text title__text--red" *ngIf="id != '0'">Sensor Overview</h3>
+            </div>
+
+            <div class="card card-w-title border padding-around">
+                <app-senzor-base-info [item]="item$ | async" (onSave)="saveSenzor($event)" (onDelete)="deleteSenzor($event)" (onCancel)="cancelSenzor()"></app-senzor-base-info>
+
+                <div *ngIf="id != '0'">
+                    <senzor-workflow-list [senzorName]="(item$ | async).name"></senzor-workflow-list>
+
+                    <div class="divider margin-b-large"></div>
+                </div>
+
+
+                <div *ngIf="(item$ | async).type == 'CellarSenzor Power v1.0'">
+                    <relay-panel [senzorName]="(item$ | async).name"></relay-panel>
+                </div>
+                <div *ngIf="(item$ | async).type == 'CellarSenzor Temperature v1.0'">
+                    <dht11-panel [senzorName]="(item$ | async).name"></dht11-panel>
+                </div>
+                <div *ngIf="(item$ | async).type == 'CellarSenzor Motion v1.0'">
+                    <pir-panel [senzorName]="(item$ | async).name"></pir-panel>
+                </div>
+
+
+
+            </div>
+
+
+        </div>
+
+
+    </div>
+
+
+</div>
