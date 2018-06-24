@@ -10,5 +10,5 @@ export const environment = {
     iotUrl: "http://localhost:44403",
     officeApiUrl: "http://localhost:44513",
     workflowUrl: "http://localhost:44405",
-    callbackUrl: "http://localhost:44402/callback"
+    callbackUrl: "http://localhost:55502/callback"
 };
